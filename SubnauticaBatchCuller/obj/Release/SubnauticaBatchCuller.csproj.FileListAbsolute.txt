@@ -6,3 +6,4 @@ C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\R
 C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\Release\SubnauticaBatchCuller.csproj.GenerateResource.Cache
 C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\Release\SubnauticaBatchCuller.exe
 C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\Release\SubnauticaBatchCuller.pdb
+C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\Release\SubnauticaBatchCuller.csprojResolveAssemblyReference.cache

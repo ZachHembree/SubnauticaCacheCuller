@@ -22,8 +22,9 @@ namespace SubnauticaBatchCuller
             SuspendLayout();
             Name = "Subnautica Batch Culler";
             Text = "Subnautica Batch Culler";
+            Icon = Properties.Resources.Experimental_Icon;
             ClientSize = new Size(1024, 776);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             BackgroundImageLayout = ImageLayout.None;
             ResumeLayout(false);
 
@@ -40,6 +41,20 @@ namespace SubnauticaBatchCuller
             Controls.Add(selector);
 			tooltips = selector.tooltips;
             grid = selector.grid;
+        }
+
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CullerForm));
+            this.SuspendLayout();
+            // 
+            // CullerForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "CullerForm";
+            this.ResumeLayout(false);
+
         }
     }
 }
