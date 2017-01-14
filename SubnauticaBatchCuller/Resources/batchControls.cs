@@ -107,24 +107,30 @@ namespace SubnauticaBatchCuller
         // Load selected save
         private void loadSaveClick(object sender, EventArgs e)
         {
+            // Get save directory
             string selectedItem = selectSave.GetItemText(selectSave.SelectedItem);
             main.savePath = getSave.SelectedPath + subnauticaGameDir + selectedItem;
 
-            if (lastSave != selectedItem) batchSelection.AppendText("Loading save " + selectedItem + ".\n");         
-            else batchSelection.AppendText("\nReloading save " + selectedItem + ".\n");
-
-            execute.Enabled = true;
-            seaLevelTip.SetToolTip(seaLevel, "Z: " + seaLevel.Value + "\nSealevel: " + ((seaLevel.Value * 160) - 2800) + "m to " + ((seaLevel.Value * 160) - 2960) + "m");
-
+            // Load save
+            if (lastSave != selectedItem) batchSelection.AppendText("Loading save " + selectedItem + ".\n\n");         
+            else batchSelection.AppendText("\nReloading save " + selectedItem + ".\n\n");
             batchSelection.ScrollToCaret();
-            main.batchSearch(main.savePath);
             lastSave = selectedItem;
+
+            // Set sealevel range
+            string sealevelRange = "Sealevel: " + ((seaLevel.Value * 160) - 2800) + "m to " + ((seaLevel.Value * 160) - 2960) + "m";
+            seaLevelTip.SetToolTip(seaLevel, "Z: " + seaLevel.Value + "\n" + sealevelRange);
+            execute.Enabled = true;
+          
+            main.getJSON();
+            main.batchSearch(main.savePath);
         }
 
         // Update sealevel from slider
         private void seaLevelUpdate(object sender, EventArgs e)
         {
-            seaLevelTip.SetToolTip(seaLevel, "Z: " + seaLevel.Value + "\nSealevel: " + ((seaLevel.Value * 160) - 2800) + "m to " + ((seaLevel.Value * 160) - 2960) + "m");
+            string sealevelRange = "Sealevel: " + ((seaLevel.Value * 160) - 2800) + "m to " + ((seaLevel.Value * 160) - 2960) + "m";
+            seaLevelTip.SetToolTip(seaLevel, "Z: " + seaLevel.Value + "\n" + sealevelRange);
             main.updateGrid();
         }
 
