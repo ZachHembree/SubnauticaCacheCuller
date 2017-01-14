@@ -1,0 +1,9 @@
+C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\bin\Debug\SubnauticaBatchCuller.exe.config
+C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\Debug\SubnauticaBatchCuller.csprojResolveAssemblyReference.cache
+C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\Debug\SubnauticaBatchCuller.Properties.Resources.resources
+C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\Debug\SubnauticaBatchCuller.csproj.GenerateResource.Cache
+C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\bin\Debug\SubnauticaBatchCuller.exe
+C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\bin\Debug\SubnauticaBatchCuller.pdb
+C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\Debug\SubnauticaBatchCuller.CullerForm.resources
+C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\Debug\SubnauticaBatchCuller.exe
+C:\Users\zhemb\Documents\SubnauticaBatchMapAndCuller\SubnauticaBatchCuller\obj\Debug\SubnauticaBatchCuller.pdb
