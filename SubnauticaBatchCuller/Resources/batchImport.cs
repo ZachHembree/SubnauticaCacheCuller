@@ -22,20 +22,20 @@ namespace SubnauticaBatchCuller
             try
             {
                 savePaths = Directory.GetDirectories(path + subnauticaGameDir, "slot*");
-                mainPanel.batchSelection.AppendText("Saves found:");
+                mainPanel.conBox.AppendText("Saves found:");
 
                 foreach (string v in savePaths)
                 {
-                    mainPanel.batchSelection.AppendText(v + "\n\n");
-                    mainPanel.batchSelection.ScrollToCaret();
+                    mainPanel.conBox.AppendText(v + "\n\n");
+                    mainPanel.conBox.ScrollToCaret();
                 }
 
                 getSaveNames();
             }
             catch
             {
-                mainPanel.batchSelection.AppendText("[ERROR] STEAMAPPS FOLDER NOT FOUND!\n\n");
-                mainPanel.batchSelection.ScrollToCaret();
+                mainPanel.conBox.AppendText("[ERROR] STEAMAPPS FOLDER NOT FOUND!\n\n");
+                mainPanel.conBox.ScrollToCaret();
             }
         }
 
@@ -66,7 +66,7 @@ namespace SubnauticaBatchCuller
                 batchCacheDir = new DirectoryInfo(path + @"\CellsCache");
                 batchFiles = batchCacheDir.GetFiles("baked-batch-cells-" + "*.bin");
                 batchStrings = new string[batchFiles.Length];
-                mainPanel.batchSelection.AppendText("Batches found: " + batchFiles.Length + "\n");
+                mainPanel.conBox.AppendText("Batches found: " + batchFiles.Length + "\n\n");
 
                 for (int a = 0; a < batchFiles.Length; a++)
                 {
@@ -78,8 +78,8 @@ namespace SubnauticaBatchCuller
             }
             catch
             {
-                mainPanel.batchSelection.AppendText("[ERROR] CELLSCACHE FOLDER NOT FOUND!\n\n");
-                mainPanel.batchSelection.ScrollToCaret();
+                mainPanel.conBox.AppendText("[ERROR] CELLSCACHE FOLDER NOT FOUND!\n\n");
+                mainPanel.conBox.ScrollToCaret();
             }
         }
 

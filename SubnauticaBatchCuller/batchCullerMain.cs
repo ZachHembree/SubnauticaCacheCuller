@@ -5,7 +5,7 @@ namespace SubnauticaBatchCuller
 {       
     public partial class CullerForm : Form
     {
-        batchSelector selector;
+        public batchSelector selector;
         batchMainPanel mainPanel;
 
         public string savePath;
@@ -41,20 +41,6 @@ namespace SubnauticaBatchCuller
             Controls.Add(selector);
 			tooltips = selector.tooltips;
             grid = selector.grid;
-        }
-
-        private void InitializeComponent()
-        {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CullerForm));
-            this.SuspendLayout();
-            // 
-            // CullerForm
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "CullerForm";
-            this.ResumeLayout(false);
-
         }
     }
 }

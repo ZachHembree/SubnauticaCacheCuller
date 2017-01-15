@@ -4,6 +4,7 @@ namespace SubnauticaBatchCuller
 {
     public partial class CullerForm
     {
+        // Save selected batches to list
         public void getSelections()
         {
             for (int a = 0; a < grid.GetLength(0); a++)
@@ -23,6 +24,7 @@ namespace SubnauticaBatchCuller
             }
         }
 
+        // Delete selected batch files
         public void deleteBatches()
         {
             for (int n = 0; n < batchList.Length; n++)
@@ -32,8 +34,8 @@ namespace SubnauticaBatchCuller
                 if (v.selected)
                 {
                     string file = savePath + @"\CellsCache\baked-batch-cells-" + v.x + "-" + v.z + "-" + v.y + ".bin";
-                    mainPanel.batchSelection.AppendText("Deleting " + v.x + " " + v.z + " " + v.y + "\n");
-                    mainPanel.batchSelection.ScrollToCaret();
+                    mainPanel.conBox.AppendText("Deleting " + v.x + " " + v.z + " " + v.y + "\n");
+                    mainPanel.conBox.ScrollToCaret();
                     File.Delete(file);
                 }
             }
