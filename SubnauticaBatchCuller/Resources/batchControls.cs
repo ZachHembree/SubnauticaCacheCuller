@@ -142,7 +142,7 @@ namespace SubnauticaBatchCuller
             lastSave = selectedItem;
 
             // Set sealevel range
-            string sealevelRange = "Sealevel: " + ((seaLevel.Value * 160) - 2800) + "m to " + ((seaLevel.Value * 160) - 2960) + "m";
+            string sealevelRange = "Sealevel: " + ((seaLevel.Value * 160) - 2880) + "m to " + ((seaLevel.Value * 160) - 3040) + "m";
             seaLevelTip.SetToolTip(seaLevel, "Z: " + seaLevel.Value + "\n" + sealevelRange);
             execute.Enabled = true;
             saveBMP.Enabled = true;
@@ -154,7 +154,7 @@ namespace SubnauticaBatchCuller
         // Update sealevel from slider
         private void seaLevelUpdate(object sender, EventArgs e)
         {
-            string sealevelRange = "Sealevel: " + ((seaLevel.Value * 160) - 2800) + "m to " + ((seaLevel.Value * 160) - 2960) + "m";
+            string sealevelRange = "Sealevel: " + ((seaLevel.Value * 160) - 2880) + "m to " + ((seaLevel.Value * 160) - 3040) + "m";
             seaLevelTip.SetToolTip(seaLevel, "Z: " + seaLevel.Value + "\n" + sealevelRange);
             main.updateGrid();
         }
