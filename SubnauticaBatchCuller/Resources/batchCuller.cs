@@ -34,8 +34,8 @@ namespace SubnauticaBatchCuller
                 if (v.selected)
                 {
                     string file = savePath + @"\CellsCache\baked-batch-cells-" + v.x + "-" + v.z + "-" + v.y + ".bin";
-                    mainPanel.batchSelection.AppendText("Deleting " + v.x + " " + v.z + " " + v.y + "\n");
-                    mainPanel.batchSelection.ScrollToCaret();
+                    mainPanel.conBox.AppendText("Deleting " + v.x + " " + v.z + " " + v.y + "\n");
+                    mainPanel.conBox.ScrollToCaret();
                     File.Delete(file);
                 }
             }

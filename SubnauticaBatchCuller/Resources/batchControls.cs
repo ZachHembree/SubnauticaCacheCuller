@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SubnauticaBatchCuller
@@ -10,15 +11,16 @@ namespace SubnauticaBatchCuller
         private Button execute = new Button();
         private Button getFolderDialog = new Button();
         private Button loadSave = new Button();
+        private Button saveBMP = new Button();
         private FolderBrowserDialog getSave = new FolderBrowserDialog();
-        public RichTextBox batchSelection = new RichTextBox();
+        public RichTextBox conBox = new RichTextBox();
         public ListBox selectSave = new ListBox();
         public TrackBar seaLevel = new TrackBar();
         private ToolTip seaLevelTip = new ToolTip();
 
         public int btnHeight = 24, sliderWidth = 32;
         private int sliderHeight, consoleWidth, consoleHeight, saveHeight, controlSpacing = 6;
-        private string lastSave = "";
+        private string lastSave = "", selectedItem = "";
         public string subnauticaGameDir;
 
         public batchMainPanel(CullerForm m, string dir, int x, int y, int w, int h)
@@ -28,18 +30,18 @@ namespace SubnauticaBatchCuller
             Location = new Point(x, y);
             Size = new Size(w, h);
 
-            sliderHeight = Height - (btnHeight * 3) - (3 * controlSpacing);
+            sliderHeight = Height - (btnHeight * 4) - (4 * controlSpacing);
             consoleHeight = (4 * sliderHeight) / 5;
             saveHeight = sliderHeight - consoleHeight - controlSpacing;
             consoleWidth = Width - sliderWidth - controlSpacing;
 
             // Console Output
-            batchSelection.ReadOnly = true;
-            batchSelection.Width = consoleWidth;
-            batchSelection.Height = consoleHeight;
-            batchSelection.Location = new Point(sliderWidth + controlSpacing, 0);
-            batchSelection.Text = "STEAM LIBRARY PATH NOT SET";
-            Controls.Add(batchSelection);
+            conBox.ReadOnly = true;
+            conBox.Width = consoleWidth;
+            conBox.Height = consoleHeight;
+            conBox.Location = new Point(sliderWidth + controlSpacing, 0);
+            conBox.Text = "STEAM LIBRARY PATH NOT SET";
+            Controls.Add(conBox);
 
             // Save Selection
             selectSave.Width = consoleWidth;
@@ -60,6 +62,16 @@ namespace SubnauticaBatchCuller
             seaLevel.ValueChanged += new EventHandler(seaLevelUpdate);
             seaLevel.Enabled = false;
             Controls.Add(seaLevel);
+
+            // Draw Map to BMP
+            saveBMP.Width = Width;
+            saveBMP.Height = btnHeight;
+            saveBMP.BackColor = Color.FromArgb(100, 255, 255, 255);
+            saveBMP.Text = "Save Map to PNG";
+            saveBMP.Location = new Point(0, Height - (btnHeight * 4) - (3 * controlSpacing));
+            saveBMP.Enabled = false;
+            saveBMP.Click += new EventHandler(saveBatchBMP);
+            Controls.Add(saveBMP);
 
             // Load Save
             loadSave.Width = Width;
@@ -91,6 +103,18 @@ namespace SubnauticaBatchCuller
             Controls.Add(execute);
         }
 
+        // Save BMP of the Batch map
+        private void saveBatchBMP(object sender, EventArgs e)
+        {
+            if (!Directory.Exists("screenshots")) Directory.CreateDirectory("screenshots");
+            Bitmap gridBMP = new Bitmap(main.selector.Width, main.selector.Height);
+
+            main.selector.DrawToBitmap(gridBMP, new Rectangle(0, 0, main.selector.Width, main.selector.Height));
+            gridBMP.Save(@"screenshots\" +selectedItem + "-Z" + seaLevel.Value + ".png", System.Drawing.Imaging.ImageFormat.Png);
+
+            conBox.AppendText("Screenshot " + selectedItem + "-Z" + seaLevel.Value + ".png saved.\n");
+        }
+
         // Delete selected batches
         private void cullBatches(object sender, EventArgs e)
         {
@@ -108,19 +132,20 @@ namespace SubnauticaBatchCuller
         private void loadSaveClick(object sender, EventArgs e)
         {
             // Get save directory
-            string selectedItem = selectSave.GetItemText(selectSave.SelectedItem);
+            selectedItem = selectSave.GetItemText(selectSave.SelectedItem);
             main.savePath = getSave.SelectedPath + subnauticaGameDir + selectedItem;
 
             // Load save
-            if (lastSave != selectedItem) batchSelection.AppendText("Loading save " + selectedItem + ".\n\n");         
-            else batchSelection.AppendText("\nReloading save " + selectedItem + ".\n\n");
-            batchSelection.ScrollToCaret();
+            if (lastSave != selectedItem) conBox.AppendText("Loading save " + selectedItem + ".\n\n");         
+            else conBox.AppendText("\nReloading save " + selectedItem + ".\n\n");
+            conBox.ScrollToCaret();
             lastSave = selectedItem;
 
             // Set sealevel range
             string sealevelRange = "Sealevel: " + ((seaLevel.Value * 160) - 2800) + "m to " + ((seaLevel.Value * 160) - 2960) + "m";
             seaLevelTip.SetToolTip(seaLevel, "Z: " + seaLevel.Value + "\n" + sealevelRange);
             execute.Enabled = true;
+            saveBMP.Enabled = true;
           
             main.getJSON();
             main.batchSearch(main.savePath);
@@ -141,7 +166,7 @@ namespace SubnauticaBatchCuller
 
             if (getSave.ShowDialog() == DialogResult.OK)
             {
-                batchSelection.Text = "Selected Steam Library:\n" + getSave.SelectedPath + "\n\n";
+                conBox.Text = "Selected Steam Library:\n" + getSave.SelectedPath + "\n\n";
                 main.saveSearch(getSave.SelectedPath);
             }
         }

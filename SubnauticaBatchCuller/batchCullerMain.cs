@@ -5,7 +5,7 @@ namespace SubnauticaBatchCuller
 {       
     public partial class CullerForm : Form
     {
-        batchSelector selector;
+        public batchSelector selector;
         batchMainPanel mainPanel;
 
         public string savePath;
