@@ -25,6 +25,7 @@ namespace SubnauticaBatchCuller
             Icon = Properties.Resources.Experimental_Icon;
             ClientSize = new Size(1024, 776);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             BackgroundImageLayout = ImageLayout.None;
             ResumeLayout(false);
 
