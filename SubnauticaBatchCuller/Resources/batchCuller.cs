@@ -33,10 +33,17 @@ namespace SubnauticaBatchCuller
 
                 if (v.selected)
                 {
-                    string file = savePath + @"\CellsCache\baked-batch-cells-" + v.x + "-" + v.z + "-" + v.y + ".bin";
+                    string baked, compiled, objects;
+
+                    baked = savePath + @"\CellsCache\baked-batch-cells-" + v.x + "-" + v.z + "-" + v.y + ".bin";
+                    compiled = savePath + @"\CompiledOctreesCache\compiled-batch-" + v.x + "-" + v.z + "-" + v.y + ".optoctrees";
+                    objects = savePath + @"\batch-objects-" + v.x + "-" + v.z + "-" + v.y + ".txt";
+
                     mainPanel.conBox.AppendText("Deleting " + v.x + " " + v.z + " " + v.y + "\n");
                     mainPanel.conBox.ScrollToCaret();
-                    File.Delete(file);
+                    File.Delete(baked);
+                    File.Delete(compiled);
+                    File.Delete(objects);
                 }
             }
         }

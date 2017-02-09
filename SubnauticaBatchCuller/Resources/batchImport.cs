@@ -74,7 +74,8 @@ namespace SubnauticaBatchCuller
                     for (int b = 18; b < workspace.Length - 4; b++) batchStrings[a] += workspace[b];
                 }
 
-                getBatchList();
+                 mainPanel.conBox.ScrollToCaret();
+;                getBatchList();
             }
             catch
             {
